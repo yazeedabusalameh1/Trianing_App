@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Trianing_App.Models.City>
+
+@{
+    ViewData["Title"] = "Cities";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary">Cities List</h2>
+        <a asp-action="Create" class="btn btn-success">+ Add New City</a>
+    </div>
+
+    <table class="table table-hover table-bordered shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().CityID)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CityName)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Population)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Province)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Country)</th>
+                <th>@Html.DisplayNameFor(model => model.First().CityRank)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CityID</td>
+                <td>@item.CityName</td>
+                    <td>@item.Population</td>
+                <td>@item.Province</td>
+                <td>@item.Country</td>
+                <td>@item.CityRank</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CityID" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.CityID" class="btn btn-sm btn-info text-white">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.CityID" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
