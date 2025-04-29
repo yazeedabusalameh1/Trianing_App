@@ -1,30 +1,16 @@
-﻿using System.Data;
-using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Trianing_App.Models;
 
 namespace Training_App.Data
 {
-    public class DBContext
+    public class DBContext : DbContext
     {
-        private readonly string _connectionString;
-
-        public DBContext(IConfiguration configuration)
+        public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
-            //  connection string  |
-            _connectionString = configuration.GetConnectionString("DbCon");
         }
 
-        public SqlConnection CreateConnection()
-        {
-            return new SqlConnection(_connectionString);
-        }
+        public DbSet<City> Citys { get; set; }
 
-        
-        public SqlConnection OpenConnection()
-        {
-            var connection = new SqlConnection(_connectionString);
-            connection.Open();
-            return connection;
-        }
+       
     }
 }
