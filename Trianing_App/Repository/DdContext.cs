@@ -9,8 +9,12 @@ namespace Training_App.Data
         {
         }
 
+        
         public DbSet<City> Citys { get; set; }
 
-       
+        public DbSet<Logs> Logs { get; set; }
+
+
+
     }
 }

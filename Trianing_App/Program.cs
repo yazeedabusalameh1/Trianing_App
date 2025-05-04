@@ -1,6 +1,7 @@
 using Training_App.Models;
 using Microsoft.EntityFrameworkCore;
 using Training_App.Data;
+using Trianing_App.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbCon")));
 
+
+builder.Services.AddScoped<LogsRepositories>();
 builder.Services.AddScoped<CityRepository>();
 
 var app = builder.Build();

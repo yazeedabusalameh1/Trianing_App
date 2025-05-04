@@ -5,6 +5,7 @@ using Trianing_App.Models;
 
 namespace Training_App.Controllers
 {
+    [Route("City")]
     public class CityController : Controller
     {
         private readonly CityRepository _cityRepo;
@@ -30,21 +31,21 @@ namespace Training_App.Controllers
         // POST: City/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(City city)
+        public IActionResult Create(CityInputModel model)
         {
             if (ModelState.IsValid)
             {
-                _cityRepo.InsertCity(city);
+                _cityRepo.InsertCity(model);
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(city);
+            return View(model);
         }
     
 
         // POST: City/Create
-        [HttpPost]
-        public IActionResult CreateApi([FromBody] City city)
+        [HttpPost("CreteApi")]
+        public IActionResult CreateApi([FromBody] CityInputModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -59,7 +60,7 @@ namespace Training_App.Controllers
 
             try
             {
-                var isAdded = _cityRepo.InsertCity(city);
+                var isAdded = _cityRepo.InsertCity(model);
 
                 if (isAdded)
                 {
@@ -86,6 +87,106 @@ namespace Training_App.Controllers
                 });
             }
         }
+
+
+        [HttpPut("UpdateAPI")]
+        public IActionResult UpdateAPI([FromBody] City city)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new
+                {
+                    success = false,
+                    message = "Invalid input.",
+                    errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)
+                });
+            }
+
+            try
+            {
+                var isUpdated = _cityRepo.UpdateCity(city);
+                if (isUpdated)
+                {
+                    return Ok(new
+                    {
+                        success = true,
+                        message = "City updated successfully."
+                    });
+                }
+
+                return NotFound(new
+                {
+                    success = false,
+                    message = "City not found."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = "An error occurred while updating.",
+                    error = ex.Message
+                });
+            }
+        }
+
+        [HttpDelete("DeleteAPI/{id}")]
+        public IActionResult DeleteAPI(int id)
+        {
+            try
+            {
+                var isDeleted = _cityRepo.DeleteCity(id);
+                if (isDeleted)
+                {
+                    return Ok(new
+                    {
+                        success = true,
+                        message = "City deleted successfully."
+                    });
+                }
+
+                return NotFound(new
+                {
+                    success = false,
+                    message = "City not found."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = "An error occurred while deleting.",
+                    error = ex.Message
+                });
+            }
+        }
+
+
+        [HttpGet("GetAllAPI")]
+        public IActionResult GetAllAPI()
+        {
+            try
+            {
+                var cities = _cityRepo.GetAllCities();
+                return Ok(new
+                {
+                    success = true,
+                    data = cities
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = "An error occurred while retrieving data.",
+                    error = ex.Message
+                });
+            }
+        }
+
 
     }
 }
