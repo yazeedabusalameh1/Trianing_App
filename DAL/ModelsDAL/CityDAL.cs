@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
-namespace Trianing_App.Models
+namespace DAL.ModelsDAL
 {
-    public class City
+    public class CityDAL
     {
-        
+       [Key]
         public int CityID { get; set; }
         public string? CityName { get; set; }
         public int? Population { get; set; }

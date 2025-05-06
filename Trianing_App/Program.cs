@@ -1,8 +1,9 @@
-using Training_App.Models;
+
 using Microsoft.EntityFrameworkCore;
-using Training_App.Data;
-using Trianing_App.Repository;
+using DAL.Data;
+using DAL.RepositoryDAL;
 using System.Reflection;
+using DAL.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +14,8 @@ builder.Services.AddDbContext<DBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbCon")));
 
 
-builder.Services.AddScoped<LogsRepositories>();
-builder.Services.AddScoped<CityRepository>();
+builder.Services.AddScoped<LogsRepositoriesDAL>();
+builder.Services.AddScoped<CityRepositoryDAL>();
 
 builder.Services.AddEndpointsApiExplorer(); // ???? APIs
 builder.Services.AddSwaggerGen(c =>

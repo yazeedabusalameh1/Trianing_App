@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Training_App.Models;
-using Trianing_App.Models;
+using DAL.Models;
+using DAL.ModelsDAL;
 
 
 namespace Training_App.Controllers
@@ -8,9 +8,9 @@ namespace Training_App.Controllers
     [Route("City")]
     public class CityController : Controller
     {
-        private readonly CityRepository _cityRepo;
+        private readonly CityRepositoryDAL _cityRepo;
 
-        public CityController(CityRepository cityRepo)
+        public CityController(CityRepositoryDAL cityRepo)
         {
             _cityRepo = cityRepo;
         }
@@ -33,7 +33,7 @@ namespace Training_App.Controllers
         // POST: City/Create
         [HttpPost("Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CityInputModel model)
+        public IActionResult Create(CityInputModelDAL model)
         {
             if (ModelState.IsValid)
             {
@@ -47,7 +47,7 @@ namespace Training_App.Controllers
 
         // POST: City/Create
         [HttpPost("CreteApi")]
-        public IActionResult CreateApi([FromBody] CityInputModel model)
+        public IActionResult CreateApi([FromBody] CityInputModelDAL model)
         {
             if (!ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace Training_App.Controllers
 
 
         [HttpPut("UpdateAPI")]
-        public IActionResult UpdateAPI([FromBody] City city)
+        public IActionResult UpdateAPI([FromBody] CityDAL city)
         {
             if (!ModelState.IsValid)
             {

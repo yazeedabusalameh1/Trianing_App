@@ -1,14 +1,14 @@
-﻿using Training_App.Data;
-using Trianing_App.Models;
+﻿using DAL.Data;
+using DAL.ModelsDAL;
 
-namespace Trianing_App.Repository
+namespace DAL.RepositoryDAL
 {
-    public class LogsRepositories
+    public class LogsRepositoriesDAL
     {
         private readonly DBContext _context;
         
 
-        public LogsRepositories(DBContext context)
+        public LogsRepositoriesDAL(DBContext context)
         {
             _context = context;
         }
@@ -18,7 +18,7 @@ namespace Trianing_App.Repository
             try
             {
 
-                var log = new Logs
+                var log = new LogsDAL
                 {
                     CreatedDate = DateTime.Now,
                     Details = details

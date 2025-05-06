@@ -1,25 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Training_App.Data; 
-using Trianing_App.Models;
-using Trianing_App.Repository;
-using Trianing_App.Helper;
+using DAL.Data; 
+using DAL.ModelsDAL;
+using DAL.RepositoryDAL;
 
-namespace Training_App.Models
+
+//using Trianing_App.RepositoryDAL;
+//using Trianing_App.Helper;
+
+
+namespace DAL.Models
 {
     public class CityRepositoryDAL
     {
         private readonly DBContext _dbContext;
-        private readonly LogsRepositories _logsRepo;
+        private readonly LogsRepositoriesDAL _logsRepo;
 
-        public CityRepositoryDAL(DBContext dbContext, LogsRepositories logsRepo) 
+        public CityRepositoryDAL(DBContext dbContext, LogsRepositoriesDAL logsRepo) 
         {
             _dbContext = dbContext;
             _logsRepo = logsRepo;
         }
        
         // Get All Cities
-        public List<City> GetAllCities()
+        public List<CityDAL> GetAllCities()
         {
             return _dbContext.Citys.ToList(); 
         }
@@ -28,18 +32,18 @@ namespace Training_App.Models
        
 
         // Insert City API 
-        public bool InsertCity(CityInputModel inModel)
+        public bool InsertCity(CityInputModelDAL inModel)
         {
             try
             {
-                var city = new City
+                var city = new CityDAL
                 {
                     CityID = inModel.CityID,
                     CityName = inModel.CityName,
                     Population = inModel.Population,
                     Governorate = inModel.Governorate,
                     Country = inModel.Country,
-                    CityRank = CityRankHelper.CalculateRank(inModel.Population)
+                    CityRank = 3,
                 };
                 _dbContext.Citys.Add(city);
                 int result = _dbContext.SaveChanges();
@@ -57,7 +61,7 @@ namespace Training_App.Models
                 return false;
             }
         }
-        public bool UpdateCity(City city)
+        public bool UpdateCity(CityDAL city)
         {
             try
             {

@@ -1,4 +1,4 @@
-﻿namespace Trianing_App.Models
+﻿namespace DAL.ModelsDAL
 {
     public class CityInputModelDAL
     {

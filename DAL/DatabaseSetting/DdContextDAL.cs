@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Trianing_App.Models;
+using DAL.ModelsDAL;
 
-namespace Training_App.Data
+namespace DAL.Data
 {
     public class DBContext : DbContext
     {
@@ -10,9 +10,9 @@ namespace Training_App.Data
         }
 
         
-        public DbSet<City> Citys { get; set; }
+        public DbSet<CityDAL> Citys { get; set; }
 
-        public DbSet<Logs> Logs { get; set; }
+        public DbSet<LogsDAL> Logs { get; set; }
 
 
 
