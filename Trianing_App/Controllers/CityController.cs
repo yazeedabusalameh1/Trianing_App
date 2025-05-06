@@ -16,6 +16,7 @@ namespace Training_App.Controllers
         }
 
         // GET: City/Index
+        [HttpGet("Index")]
         public IActionResult Index()
         {
             var cities = _cityRepo.GetAllCities();
@@ -23,13 +24,14 @@ namespace Training_App.Controllers
         }
 
         // GET: City/Create
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: City/Create
-        [HttpPost]
+        [HttpPost("Create")]
         [ValidateAntiForgeryToken]
         public IActionResult Create(CityInputModel model)
         {
@@ -163,7 +165,11 @@ namespace Training_App.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Return All City from my DB 
+        /// </summary>
+        /// <param name="test">no parm for this API</param>
+        /// <returns> return list city as a jeson </returns>
         [HttpGet("GetAllAPI")]
         public IActionResult GetAllAPI()
         {

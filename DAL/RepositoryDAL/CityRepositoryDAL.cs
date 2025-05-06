@@ -7,12 +7,12 @@ using Trianing_App.Helper;
 
 namespace Training_App.Models
 {
-    public class CityRepository
+    public class CityRepositoryDAL
     {
         private readonly DBContext _dbContext;
         private readonly LogsRepositories _logsRepo;
 
-        public CityRepository(DBContext dbContext, LogsRepositories logsRepo) 
+        public CityRepositoryDAL(DBContext dbContext, LogsRepositories logsRepo) 
         {
             _dbContext = dbContext;
             _logsRepo = logsRepo;
