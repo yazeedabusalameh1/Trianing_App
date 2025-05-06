@@ -47,16 +47,17 @@ namespace Trianing_App.BL
         
         }
 
-        public bool GetAllCity()
+        public List<CityDAL> GetAllCity()
         {
             try
             {
-                _cityRepositoryDAL.GetAllCities();
-                return true;
+                var x = _cityRepositoryDAL.GetAllCities();
+
+                return x;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
     
