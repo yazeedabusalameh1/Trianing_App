@@ -4,6 +4,7 @@ using DAL.Data;
 using DAL.RepositoryDAL;
 using System.Reflection;
 using DAL.Models;
+using Trianing_App.BL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,9 @@ builder.Services.AddDbContext<DBContext>(options =>
 
 builder.Services.AddScoped<LogsRepositoriesDAL>();
 builder.Services.AddScoped<CityRepositoryDAL>();
+builder.Services.AddScoped<CityBLService>();
+builder.Services.AddScoped<LogsBLService>();
+
 
 builder.Services.AddEndpointsApiExplorer(); // ???? APIs
 builder.Services.AddSwaggerGen(c =>

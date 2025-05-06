@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DAL.Models;
 using DAL.ModelsDAL;
+using Trianing_App.BL;
 
 
 namespace Training_App.Controllers
@@ -8,9 +9,9 @@ namespace Training_App.Controllers
     [Route("City")]
     public class CityController : Controller
     {
-        private readonly CityRepositoryDAL _cityRepo;
+        private readonly CityBLService _cityRepo;
 
-        public CityController(CityRepositoryDAL cityRepo)
+        public CityController(CityBLService cityRepo)
         {
             _cityRepo = cityRepo;
         }
@@ -19,7 +20,7 @@ namespace Training_App.Controllers
         [HttpGet("Index")]
         public IActionResult Index()
         {
-            var cities = _cityRepo.GetAllCities();
+            var cities = _cityRepo.GetAllCity();
             return View(cities);
         }
 
@@ -175,7 +176,7 @@ namespace Training_App.Controllers
         {
             try
             {
-                var cities = _cityRepo.GetAllCities();
+                var cities = _cityRepo.GetAllCity();
                 return Ok(new
                 {
                     success = true,
