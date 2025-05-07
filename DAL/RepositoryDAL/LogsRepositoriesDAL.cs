@@ -1,9 +1,10 @@
 ﻿using DAL.Data;
+using DAL.Interface;
 using DAL.ModelsDAL;
 
 namespace DAL.RepositoryDAL
 {
-    public class LogsRepositoriesDAL
+    public class LogsRepositoriesDAL: ILogsRepositoriesDAL
     {
         private readonly DBContext _context;
         

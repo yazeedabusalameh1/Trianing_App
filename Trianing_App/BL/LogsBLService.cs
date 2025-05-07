@@ -1,15 +1,20 @@
-﻿using DAL.RepositoryDAL;
+﻿using DAL.Interface;
+using DAL.RepositoryDAL;
+using Trianing_App.BL.BLInterface;
+
+
+
 
 namespace Trianing_App.BL
 {
-    public class LogsBLService
+    public class LogsBLService : ILogsBLService
     {
-        private readonly LogsRepositoriesDAL _logsRepositoriesDAL;
-        public LogsBLService(LogsRepositoriesDAL LogsRepositoriesDAL)
+        private readonly ILogsRepositoriesDAL _logsRepositoriesDAL;
+        public LogsBLService(ILogsRepositoriesDAL LogsRepositoriesDAL)
         {
             _logsRepositoriesDAL = LogsRepositoriesDAL;
         }
-        public bool Addlog(string addLogs)
+        public bool AddLog(string addLogs)
         {
             try
             {
@@ -24,5 +29,8 @@ namespace Trianing_App.BL
 
 
         }
+
+       
+       
     }
 }

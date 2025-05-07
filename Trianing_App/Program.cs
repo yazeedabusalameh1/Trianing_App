@@ -3,8 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using DAL.Data;
 using DAL.RepositoryDAL;
 using System.Reflection;
-using DAL.Models;
+//using DAL.Models;
 using Trianing_App.BL;
+using Trianing_App.BL.BLInterface;
+using DAL.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +17,10 @@ builder.Services.AddDbContext<DBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbCon")));
 
 
-builder.Services.AddScoped<LogsRepositoriesDAL>();
-builder.Services.AddScoped<CityRepositoryDAL>();
-builder.Services.AddScoped<CityBLService>();
-builder.Services.AddScoped<LogsBLService>();
+builder.Services.AddScoped<ILogsRepositoriesDAL,LogsRepositoriesDAL>();
+builder.Services.AddScoped<ICityRepositoryDAL, CityRepositoryDAL>();
+builder.Services.AddScoped<ICityBLService, CityBLService>();
+builder.Services.AddScoped<ILogsBLService, LogsBLService>();
 
 
 builder.Services.AddEndpointsApiExplorer(); // ???? APIs

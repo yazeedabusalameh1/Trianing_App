@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DAL.Models;
+
 using DAL.ModelsDAL;
 using Trianing_App.BL;
+using Trianing_App.BL.BLInterface;
 
 
 namespace Training_App.Controllers
@@ -9,9 +10,9 @@ namespace Training_App.Controllers
     [Route("City")]
     public class CityController : Controller
     {
-        private readonly CityBLService _cityRepo;
+        private readonly ICityBLService _cityRepo;
 
-        public CityController(CityBLService cityRepo)
+        public CityController(ICityBLService cityRepo)
         {
             _cityRepo = cityRepo;
         }

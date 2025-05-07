@@ -3,20 +3,23 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using DAL.Data; 
 using DAL.ModelsDAL;
 using DAL.RepositoryDAL;
+using DAL.Interface;
+
 
 
 //using Trianing_App.RepositoryDAL;
 //using Trianing_App.Helper;
 
 
-namespace DAL.Models
+namespace DAL.RepositoryDAL
 {
-    public class CityRepositoryDAL
+    public class CityRepositoryDAL: ICityRepositoryDAL
+
     {
         private readonly DBContext _dbContext;
-        private readonly LogsRepositoriesDAL _logsRepo;
+        private readonly ILogsRepositoriesDAL _logsRepo;
 
-        public CityRepositoryDAL(DBContext dbContext, LogsRepositoriesDAL logsRepo) 
+        public CityRepositoryDAL(DBContext dbContext, ILogsRepositoriesDAL logsRepo) 
         {
             _dbContext = dbContext;
             _logsRepo = logsRepo;
