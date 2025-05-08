@@ -3,6 +3,7 @@
 using DAL.ModelsDAL;
 using Trianing_App.BL;
 using Trianing_App.BL.BLInterface;
+using Trianing_App.ViewModels;
 
 
 namespace Training_App.Controllers
@@ -35,7 +36,7 @@ namespace Training_App.Controllers
         // POST: City/Create
         [HttpPost("Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CityInputModelDAL model)
+        public IActionResult Create(CityInputModel model)
         {
             if (ModelState.IsValid)
             {
@@ -49,7 +50,7 @@ namespace Training_App.Controllers
 
         // POST: City/Create
         [HttpPost("CreteApi")]
-        public IActionResult CreateApi([FromBody] CityInputModelDAL model)
+        public IActionResult CreateApi([FromBody] CityInputModel model)
         {
             if (!ModelState.IsValid)
             {

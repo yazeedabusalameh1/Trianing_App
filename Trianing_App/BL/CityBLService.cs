@@ -3,6 +3,7 @@ using DAL.Interface;
 using DAL.ModelsDAL;
 using Trianing_App.BL.BLInterface;
 using Trianing_App.Helper;
+using Trianing_App.ViewModels;
 
 
 namespace Trianing_App.BL
@@ -17,7 +18,7 @@ namespace Trianing_App.BL
             _logsBLservice = logsBLservice;
         }
 
-        public bool InsertCity(CityInputModelDAL city)
+        public bool InsertCity(CityInputModel city)
         {
             try
             {
