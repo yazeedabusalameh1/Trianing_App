@@ -17,12 +17,12 @@ namespace DAL.RepositoryDAL
 
     {
         private readonly DBContext _dbContext;
-        private readonly ILogsRepositoriesDAL _logsRepo;
+        
 
-        public CityRepositoryDAL(DBContext dbContext, ILogsRepositoriesDAL logsRepo) 
+        public CityRepositoryDAL(DBContext dbContext) 
         {
             _dbContext = dbContext;
-            _logsRepo = logsRepo;
+           
         }
        
         // Get All Cities
@@ -35,25 +35,17 @@ namespace DAL.RepositoryDAL
        
 
         // Insert City API 
-        public bool InsertCity(CityInputModelDAL inModel)
+        public bool InsertCity(CityDAL inModel)
         {
             try
             {
-                var city = new CityDAL
-                {
-                    CityID = inModel.CityID,
-                    CityName = inModel.CityName,
-                    Population = inModel.Population,
-                    Governorate = inModel.Governorate,
-                    Country = inModel.Country,
-                    CityRank = 3,
-                };
-                _dbContext.Citys.Add(city);
+               
+                _dbContext.Citys.Add(inModel);
                 int result = _dbContext.SaveChanges();
 
 
                 if (result > 0) {
-                    _logsRepo.AddLog($"{city.CityName} : Created Successfully");
+                   
                     return true;
                 }
                 return false;
@@ -82,7 +74,7 @@ namespace DAL.RepositoryDAL
                 int result = _dbContext.SaveChanges();
                 if (result > 0)
                 {
-                    _logsRepo.AddLog($"{city.CityName}: Updated City");
+                    //_logsRepo.AddLog($"{city.CityName}: Updated City");
                     return true;
 
                 }
@@ -107,7 +99,7 @@ namespace DAL.RepositoryDAL
                 int result = _dbContext.SaveChanges();
                 if(result > 0)
                 {
-                    _logsRepo.AddLog($"{delCity.CityName}:  Was deleted successfully ");
+                    //_logsRepo.AddLog($"{delCity.CityName}:  Was deleted successfully ");
                     return true;
                 }
                 return false;

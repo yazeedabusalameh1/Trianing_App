@@ -2,6 +2,7 @@
 using DAL.Interface;
 using DAL.ModelsDAL;
 using Trianing_App.BL.BLInterface;
+using Trianing_App.Helper;
 
 
 namespace Trianing_App.BL
@@ -20,8 +21,26 @@ namespace Trianing_App.BL
         {
             try
             {
-                _cityRepositoryDAL.InsertCity(city);
-                return true;
+                var rank = CityRankHelper.CalculateRank(city.Population);
+                var cityModel = new CityDAL
+                {
+                    CityID = city.CityID,
+                    CityName = city.CityName,
+                    Population = city.Population,
+                    Governorate = city.Governorate,
+                    Country = city.Country,
+                    CityRank = rank,
+                };
+                var isadded = _cityRepositoryDAL.InsertCity(cityModel);
+                if (isadded)
+                {
+                    _logsBLservice.AddLog($"{city.CityName} : Created Successfully");
+                    return true;
+                }
+                else {
+                    _logsBLservice.AddLog($"{city.CityName} : Filaed to Create City");
+                    return false;
+                }
             }
             catch (Exception ex)
             {

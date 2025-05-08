@@ -12,7 +12,7 @@ namespace DAL.Interface
         List<CityDAL> GetAllCities();
 
         // Insert a new city
-        bool InsertCity(CityInputModelDAL inModel);
+        bool InsertCity(CityDAL inModel);
 
         // Update an existing city
         bool UpdateCity(CityDAL city);
