@@ -9,10 +9,13 @@ namespace DAL.Data
         {
         }
 
-        
+        public DBContext() { }
+
         public DbSet<CityDAL> Citys { get; set; }
 
         public DbSet<LogsDAL> Logs { get; set; }
+        public DbSet<Country> Countries { get; set; }
+
 
 
 
