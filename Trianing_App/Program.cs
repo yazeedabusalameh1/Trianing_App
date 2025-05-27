@@ -7,6 +7,9 @@ using System.Reflection;
 using Trianing_App.BL;
 using Trianing_App.BL.BLInterface;
 using DAL.Interface;
+using Trianing_App.Middleware;
+using DAL.Dependencies.DatabaseSetting;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,10 +20,30 @@ builder.Services.AddDbContext<DBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbCon")));
 
 
+builder.Services.Configure<MongoDBSettings>(
+    builder.Configuration.GetSection("MongoDBSettings"));
+
+// MongoDB Client
+builder.Services.AddSingleton<IMongoClient>(sp =>
+{
+    var settings = builder.Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
+    return new MongoClient(settings.ConnectionString);
+});
+
+
+
+
+
+// Register the Business Logic Layer (BL)
+builder.Services.AddScoped<ICitizenBLService, CitizenBLService>();
+// Register your Mongo Repositories
+builder.Services.AddScoped<ICitizenRepositoryDAL, CitizenRepositoryDAL>();
 builder.Services.AddScoped<ILogsRepositoriesDAL,LogsRepositoriesDAL>();
 builder.Services.AddScoped<ICityRepositoryDAL, CityRepositoryDAL>();
 builder.Services.AddScoped<ICityBLService, CityBLService>();
 builder.Services.AddScoped<ILogsBLService, LogsBLService>();
+builder.Services.Configure<HeaderCheckSrtingModel>(builder.Configuration.GetSection("HeaderCheckSettings"));
+
 
 
 builder.Services.AddEndpointsApiExplorer(); // ???? APIs
@@ -54,9 +77,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
+app.UseMiddleware<HeaderChackMiddleware>();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
