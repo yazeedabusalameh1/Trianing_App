@@ -27,6 +27,7 @@ namespace DAL.ModelsDAL
     }
     public class Nots
     {
+        //1121
         public string noteText { get; set; }
         public string noteDate { get; set; }
     }
