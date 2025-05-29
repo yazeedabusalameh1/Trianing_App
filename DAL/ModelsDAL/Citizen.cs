@@ -10,7 +10,7 @@ namespace DAL.ModelsDAL
      public class Citizen
     {
         [Key]
-        public int CitizenID { get; set; }
+        public string CitizenID { get; set; }
 
         [Required]
         public string FullName { get; set; }

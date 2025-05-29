@@ -21,7 +21,7 @@ namespace DAL.RepositoryDAL
             return _citizens.Find(_ => true).ToList();
         }
 
-        public Citizen GetCitizenById(int id)
+        public Citizen GetCitizenById(string id)
         {
             return _citizens.Find(c => c.CitizenID == id).FirstOrDefault();
         }
@@ -45,7 +45,7 @@ namespace DAL.RepositoryDAL
             return result.ModifiedCount > 0;
         }
 
-        public bool DeleteCitizen(int id)
+        public bool DeleteCitizen(string id)
         {
             var result = _citizens.DeleteOne(c => c.CitizenID == id);
             return result.DeletedCount > 0;

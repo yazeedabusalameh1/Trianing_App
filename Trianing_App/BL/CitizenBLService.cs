@@ -15,12 +15,12 @@ namespace Trianing_App.BL
 
         public List<Citizen> GetAllCitizens() => _citizenRepository.GetAllCitizens();
 
-        public Citizen GetCitizenById(int id) => _citizenRepository.GetCitizenById(id);
+        public Citizen GetCitizenById(string id) => _citizenRepository.GetCitizenById(id);
 
         public bool AddCitizen(Citizen citizen) => _citizenRepository.AddCitizen(citizen);
 
         public bool UpdateCitizen(Citizen citizen) => _citizenRepository.UpdateCitizen(citizen);
 
-        public bool DeleteCitizen(int id) => _citizenRepository.DeleteCitizen(id);
+        public bool DeleteCitizen(string id) => _citizenRepository.DeleteCitizen(id);
     }
 }
