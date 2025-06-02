@@ -22,5 +22,7 @@ namespace Trianing_App.BL
         public bool UpdateCitizen(Citizen citizen) => _citizenRepository.UpdateCitizen(citizen);
 
         public bool DeleteCitizen(int id) => _citizenRepository.DeleteCitizen(id);
+        //add new
+
     }
 }
