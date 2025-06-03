@@ -4,6 +4,7 @@ using Trianing_App.BL.BLInterface;
 
 namespace Trianing_App.BL
 {
+    // test master role
     public class CitizenBLService : ICitizenBLService
     {
         private readonly ICitizenRepositoryDAL _citizenRepository;
