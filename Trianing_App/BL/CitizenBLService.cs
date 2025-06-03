@@ -17,6 +17,7 @@ namespace Trianing_App.BL
         {
             // تعديل تجريبي لاختبار stash
             return _citizenRepository.GetAllCitizens();
+            //add master
         }
         public Citizen GetCitizenById(string id) => _citizenRepository.GetCitizenById(id);
 
