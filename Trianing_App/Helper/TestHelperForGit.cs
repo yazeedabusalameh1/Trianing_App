@@ -6,5 +6,7 @@
         {
             Console.WriteLine("Hello Yazeed");
         }
+        public static void AunserYazeed() {  
+            Console.WriteLine("Hi Yazeed"); }
     }
 }
