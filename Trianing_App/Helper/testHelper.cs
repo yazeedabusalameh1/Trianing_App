@@ -6,5 +6,10 @@
         {
             Console.WriteLine("Hello Amara");
         }
+        public void Answer_From_Yazeed()
+        {
+            Console.WriteLine("Wlecome Amarah");
+        }
+        //test
     }
 }
