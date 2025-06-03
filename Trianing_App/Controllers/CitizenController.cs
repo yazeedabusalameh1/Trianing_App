@@ -82,7 +82,7 @@ namespace Training_App.Controllers
         }
 
         [HttpDelete("DeleteApi/{id}")]
-        public IActionResult DeleteApi(int id)
+        public IActionResult DeleteApi(string id)
         {
             try
             {
