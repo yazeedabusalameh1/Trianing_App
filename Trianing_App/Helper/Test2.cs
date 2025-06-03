@@ -2,9 +2,9 @@
 {
     public class Test2
     {
-        public void say_hi_in_Yazeed()
+        public void Say_Hi_Into_Amara()
         {
-            Console.WriteLine("hi Yazeed");
+            Console.WriteLine("Hi Amara");
         }
     }
 }
