@@ -13,8 +13,11 @@ namespace Trianing_App.BL
             _citizenRepository = citizenRepository;
         }
 
-        public List<Citizen> GetAllCitizens() => _citizenRepository.GetAllCitizens();
-
+        public List<Citizen> GetAllCitizens()
+        {
+            // تعديل تجريبي لاختبار stash
+            return _citizenRepository.GetAllCitizens();
+        }
         public Citizen GetCitizenById(int id) => _citizenRepository.GetCitizenById(id);
 
         public bool AddCitizen(Citizen citizen) => _citizenRepository.AddCitizen(citizen);
